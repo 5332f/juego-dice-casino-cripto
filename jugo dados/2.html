@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Dados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="casino-background">
+        <div id="game-container" class="neon-border">
+            <header>
+                <div id="user-info" class="info-display">
+                    <div id="user-balance">
+                        <div class="balance-item">
+                            <img src="path/to/your/token-logo.png" alt="Token Logo" id="crypto-logo">
+                            <span>Saldo: <span id="balance-amount">0</span></span>
+                        </div>
+                    </div>
+                </div>
+                <button class="casino-btn" onclick="connectWallet()">Conectar Wallet</button>
+            </header>
+
+            <div class="game-layout">
+                <div class="game-content">
+                    <div id="dice-container">
+                        <div id="dice">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face right"></div>
+                            <div class="face left"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div id="bet-info">
+                        <img src="path/to/your/token-logo.png" alt="Token Logo" id="crypto-logo">
+                        <div id="bet-details">
+                            <span>Monto de la apuesta: <span id="bet-amount">0</span></span>
+                            <span id="last-change">Último cambio: <span id="last-change-amount">0</span></span>
+                        </div>
+                    </div>
+                    <div id="betting-controls">
+                        <button class="casino-btn" onclick="depositToken()">Depositar</button>
+                        <button class="casino-btn" onclick="withdrawToken()">Retirar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="history-panel">
+                <ul id="roll-history"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="recharge-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRechargeModal()">&times;</span>
+            <h2>Recargar Monedero</h2>
+            <div>
+                <p>Dirección del monedero:</p>
+                <div id="recharge-wallet-address">0x478a95dEa262198EEBE713E9624214eEc6A686B4</div>
+                <button class="casino-btn" id="copy-wallet-address" onclick="copyAddress()">Copiar Dirección</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@^6.0.0/dist/ethers.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

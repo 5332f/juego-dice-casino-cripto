@@ -1,0 +1,258 @@
+:root {
+    --bg-color: #1a1a2e;
+    --text-color: #ffffff;
+    --red: #ff6b6b;
+    --blue: #4ecdc4;
+    --green: #45b7d1;
+    --yellow: #f9ca24;
+    --purple: #8e44ad;
+    --orange: #e67e22;
+    --glow-color: rgba(255, 255, 255, 0.5);
+    --neon-red: #ff3131;
+    --neon-blue: #4cc9f0;
+    --neon-green: #39ff14;
+    --neon-yellow: #ffff00;
+    --neon-purple: #bf00ff;
+    --neon-orange: #ff8c00;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.casino-background {
+    background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #950740);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#game-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    background-color: rgba(26, 26, 46, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.neon-border {
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue), inset 0 0 10px var(--neon-blue);
+    animation: neon-pulse 1.5s infinite alternate;
+}
+
+@keyframes neon-pulse {
+    from { box-shadow: 0 0 10px var(--neon-blue), inset 0 0 10px var(--neon-blue); }
+    to { box-shadow: 0 0 20px var(--neon-blue), inset 0 0 20px var(--neon-blue); }
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.info-display {
+    font-size: 0.9rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    animation: neon-glow 2s infinite alternate;
+}
+
+#user-balance {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.balance-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.balance-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.game-layout {
+    display: flex;
+    gap: 2rem;
+}
+
+.game-content {
+    flex: 1;
+}
+
+#dice-container {
+    perspective: 1000px;
+    margin-bottom: 2rem;
+}
+
+#dice {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    margin: 0 auto 2rem;
+    cursor: pointer;
+    animation: dice-pulse 2s infinite;
+}
+
+@keyframes dice-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--bg-color);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    box-shadow: 0 0 20px var(--glow-color);
+    transition: all 0.3s ease;
+    animation: neon-glow 2s infinite alternate;
+}
+
+.face:hover {
+    box-shadow: 0 0 30px var(--glow-color);
+}
+
+.face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.front  { transform: rotateY(0deg)   translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg)  translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg)  translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+#bet-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+#crypto-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+}
+
+#bet-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#betting-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.casino-btn {
+    background-color: var(--neon-green);
+    color: var(--text-color);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.casino-btn:hover {
+    background-color: var(--neon-yellow);
+}
+
+#history-panel {
+    margin-top: 2rem;
+}
+
+#roll-history {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#roll-history li {
+    background-color: var(--bg-color);
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#recharge-wallet-address {
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+#copy-wallet-address {
+    margin-top: 1rem;
+}

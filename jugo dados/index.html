@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Cripto</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="casino-background">
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content neon-border">
+            <h2>¡Bienvenido al Juego de Dados Cripto!</h2>
+            <p>Para ganar totalmente gratis la moneda TNT, solo conecta tu billetera y juega gratis con 100 TNT.</p>
+            <button id="connect-wallet-btn" class="casino-btn">Conectar Billetera y Recibir TNT</button>
+            <button id="close-welcome-modal" class="casino-btn">Cerrar y Jugar con Otras Monedas</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="neon-border">
+        <header>
+            <div id="wallet-address" class="info-display">Conectar MetaMask</div>
+            <div id="user-balance" class="info-display"></div>
+            <div id="last-color" class="info-display">Último color: -</div>
+        </header>
+        <main>
+            <div class="game-layout">
+                <div class="game-content">
+                    <div id="dice-container">
+                        <div id="dice" tabindex="0" role="button" aria-label="Tirar el dado">
+                            <div class="face front"><img src="imagen/3.png" alt="USDT"></div>
+                            <div class="face back"><img src="imagen/3.png" alt="USDT"></div>
+                            <div class="face right"><img src="imagen/3.png" alt="USDT"></div>
+                            <div class="face left"><img src="imagen/3.png" alt="USDT"></div>
+                            <div class="face top"><img src="imagen/3.png" alt="USDT"></div>
+                            <div class="face bottom"><img src="imagen/3.png" alt="USDT"></div>
+                        </div>
+                    </div>
+                    <div id="bet-info">
+                        <img id="crypto-logo" src="" alt="Logo de criptomoneda" class="crypto-icon">
+                        <div id="bet-details">
+                            <span id="bet-amount">Apuesta: 0</span>
+                            <span id="user-crypto-balance">Saldo: 0</span>
+                            <span id="last-change">Último cambio: 0</span>
+                        </div>
+                    </div>
+                    <div class="control-panel">
+                        <div class="panel betting-panel">
+                            <h3>Apuesta</h3>
+                            <div id="betting-section">
+                                <label for="bet-color">Color a apostar:</label>
+                                <select id="bet-color">
+                                    <option value="red">Rojo</option>
+                                    <option value="blue">Azul</option>
+                                    <option value="green">Verde</option>
+                                    <option value="yellow">Amarillo</option>
+                                    <option value="purple">Morado</option>
+                                    <option value="orange">Naranja</option>
+                                </select>
+                                <label for="crypto-select">Criptomoneda:</label>
+                                <select id="crypto-select">
+                                    <option value="tnt">TNT</option>
+                                    <option value="trx">TRX</option>
+                                    <option value="dogecoin">Dogecoin</option>
+                                    <option value="bnb">BNB</option>
+                                    <option value="usdt">USDT</option>
+                                </select>
+                                <label for="bet-amount-input">Cantidad:</label>
+                                <input type="number" id="bet-amount-input" min="0.1" step="0.1" value="0.1">
+                                <div id="betting-controls">
+                                    <button id="half-bet" class="casino-btn">1/2</button>
+                                    <button id="double-bet" class="casino-btn">x2</button>
+                                </div>
+                                <button id="place-bet" class="casino-btn">Apostar</button>
+                            </div>
+                        </div>
+                        <div class="panel auto-play-panel">
+                            <h3>Juego Automático</h3>
+                            <div id="auto-play-section">
+                                <label for="auto-play">Activar:</label>
+                                <input type="checkbox" id="auto-play">
+                                <div id="recovery-options">
+                                    <label for="recovery-percentage">Porcentaje de recuperación:</label>
+                                    <input type="number" id="recovery-percentage" min="0" max="100" value="50">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel speed-panel">
+                            <h3>Velocidad</h3>
+                            <div id="speed-control">
+                                <label for="game-speed">Ajustar:</label>
+                                <input type="range" id="game-speed" min="1" max="5" value="3">
+                                <button id="increase-speed" class="casino-btn">Aumentar Velocidad</button>
+                            </div>
+                        </div>
+                        <div class="panel financial-panel">
+                            <h3>Finanzas</h3>
+                            <div id="financial-controls">
+                                <button id="withdraw" class="casino-btn">Retirar Ganancias</button>
+                                <button id="deposit" class="casino-btn">Depositar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="history-panel">
+                        <h3>Historial de tiradas</h3>
+                        <ul id="roll-history"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="deposit-modal" class="modal">
+        <div class="modal-content neon-border">
+            <span class="close">&times;</span>
+            <h2>Depositar</h2>
+            <p>Seleccione la moneda a depositar:</p>
+            <select id="deposit-crypto">
+                <option value="trx">TRX</option>
+                <option value="dogecoin">Dogecoin</option>
+                <option value="bnb">BNB</option>
+                <option value="usdt">USDT</option>
+            </select>
+            <p>Dirección de la billetera:</p>
+            <p id="wallet-address-display">0xDBB40A4B0DBA6dC69d74639EE9480A26e6D0fbf5</p>
+        </div>
+    </div>
+    <div id="recharge-modal" class="modal">
+        <div class="modal-content neon-border">
+            <span class="close">&times;</span>
+            <h2>Recargar Saldo</h2>
+            <p>Seleccione la moneda que desea recargar:</p>
+            <select id="recharge-crypto-select">
+                <option value="tnt">TNT</option>
+                <option value="trx">TRX</option>
+                <option value="dogecoin">Dogecoin</option>
+                <option value="bnb">BNB</option>
+                <option value="usdt">USDT</option>
+            </select>
+            <p>Dirección de la billetera para recargar:</p>
+            <p id="recharge-wallet-address"></p>
+            <button id="copy-wallet-address" class="casino-btn">Copiar Dirección</button>
+        </div>
+    </div>
+
+    <!-- Incluir ethers.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.1/dist/ethers.min.js"></script>
+    <!-- Tu código JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
+    <audio id="dice-sound" src="dice-roll.mp3"></audio>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
